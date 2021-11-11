@@ -34,10 +34,11 @@ async function run() {
 
       //get api
       app.get('/services', async (req, res) => {
-         const cursor = userCollection.find({});
+         const cursor = servicesCollection.find({});
          const services = await cursor.toArray();
          res.send(services);
       })
+
       app.get('/user', async (req, res) => {
          const cursor = ordersCollection.find({});
          const services = await cursor.toArray();
@@ -70,20 +71,16 @@ async function run() {
 
       //post apii
       app.post('/services', async (req, res) => {
-
          const newUser = req.body;
          const result = await servicesCollection.insertOne(newUser);
-
          console.log('added user', result);
          res.json(result);
 
       })
 
       app.post('/user', async (req, res) => {
-
          const newUser = req.body;
          const result = await userCollection.insertOne(newUser);
-
          console.log('added user', result);
          res.json(result);
 
